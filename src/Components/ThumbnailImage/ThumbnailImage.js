@@ -12,7 +12,7 @@ const ThumbnailImage = (props) => {
     smallImageIndex = ArrayLength - 2;
   } else if (MainImageindex === 0 && props.num === -1) {
     smallImageIndex = ArrayLength - 1;
-  } else if (MainImageindex === ArrayLength - 2 && props.num == 2) {
+  } else if (MainImageindex === ArrayLength - 2 && props.num === 2) {
     smallImageIndex = 0;
   } else if (MainImageindex === ArrayLength - 1 && props.num === 1) {
     smallImageIndex = 0;

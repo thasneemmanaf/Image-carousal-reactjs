@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import SearchBar from "./Components/SearchBar/SearchBar";
 import Heading from "./Components/Heading/Heading";
@@ -24,8 +24,6 @@ function App() {
     url: "",
   });
 
-  useEffect(() => {}, []);
-
   // Read search value from search box
   const handleOnChangeSearch = (event) => {
     setSearchValue(event.currentTarget.value);
@@ -38,11 +36,10 @@ function App() {
 
     setLoading(true);
     fetch(
-      `${baseUrl}/search/photos/?page=1&per_page=12&query=${query}&client_id=${clientId}`
+      `${baseUrl}/search/photos/?page=1&per_page=16&query=${query}&client_id=${clientId}`
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.results);
         setLoading(false);
         setImages([...data.results]);
       })
@@ -136,13 +133,13 @@ function App() {
   }
   return (
     <div className="App">
-      <Heading />
+      <Heading images={images} />
       <SearchBar
         handleOnChangeSearch={handleOnChangeSearch}
         fetchImages={fetchImages}
+        searchValue={searchValue}
       />
       {isLoading ? <Loader /> : null}
-
       <WrapperImages>
         {images.map((image, index) => {
           return (

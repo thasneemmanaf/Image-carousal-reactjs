@@ -1,0 +1,35 @@
+/* h1 {
+  text-align: center;
+  color: rgb(20, 220, 53);
+  font-family: "Brush Script MT", cursive;
+  font-size: 100px;
+  font-style: italic;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 19.8px;
+} */
+
+h1 {
+  position: fixed;
+  top: 180px;
+  left: 170px;
+  text-align: center;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 25px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  color: crimson;
+  font-weight: normal;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: normal;
+  font-variant: small-caps;
+  text-transform: none;
+}
+
+h1 span {
+  font-weight: bold;
+}
+
+.hideH1 {
+  visibility: hidden;
+}
