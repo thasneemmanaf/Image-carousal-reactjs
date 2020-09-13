@@ -7,7 +7,7 @@ const Image = (props) => {
       className={classes.image}
       src={props.url}
       alt="image"
-      onClick={() => props.openModal(props.url, props.id)}
+      onClick={() => props.openModal(props.index, props.url)}
     />
   );
 };

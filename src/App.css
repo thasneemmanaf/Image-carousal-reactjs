@@ -1,12 +1,3 @@
-.App {
-  text-align: center;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 html,
 body {
   width: 100%;
@@ -15,18 +6,6 @@ body {
 
 body {
   background-color: white;
-}
-
-.modal {
-  position: fixed;
-  z-index: 1000;
-  top: 20%;
-  left: 20%;
-  width: 60%;
-  height: 60%;
-  background-color: black;
-  padding: 6px;
-  border: 4px solid white;
 }
 
 .backdrop {
@@ -39,20 +18,51 @@ body {
   z-index: 500;
 }
 
-.nextBtn {
+.modalContainerFixed {
+  position: relative;
+}
+.modalContainer {
   position: fixed;
+  z-index: 1000;
+  top: 15%;
+  left: 25%;
+  width: 45%;
+  height: 70%;
+  background-color: black;
+  padding: 6px;
+  border: 4px solid white;
+}
+.modal {
+  position: absolute;
+  z-index: 1000;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 72%;
+}
+
+.closeBtn {
+  position: absolute;
   z-index: 1001;
-  top: 45%;
-  left: 73%;
+  top: -2%;
+  left: 94%;
+  font-size: 35px;
+  color: crimson;
+}
+.nextBtn {
+  position: absolute;
+  z-index: 1001;
+  top: 40%;
+  left: 85%;
   font-size: 60px;
   color: crimson;
 }
 
 .prevBtn {
-  position: fixed;
+  position: absolute;
   z-index: 1001;
-  top: 45%;
-  left: 23%;
+  top: 40%;
+  left: 5%;
   font-size: 60px;
   color: crimson;
 }
@@ -64,4 +74,32 @@ body {
 .nextBtn:hover {
   cursor: pointer;
   transform: scale(1.2);
+}
+
+.closeBtn:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}
+
+.noSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.imageSlider {
+  position: absolute;
+  display: grid;
+
+  justify-content: center;
+  /* gap: 0.7em; */
+  grid-template-columns: repeat(5, 1fr);
+  z-index: 1001;
+  top: 320px;
+  left: 0;
+  color: white;
+  grid-auto-rows: 115px;
 }

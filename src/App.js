@@ -5,9 +5,11 @@ import Heading from "./Components/Heading/Heading";
 import Loader from "./Components/Loader/Loader";
 import Image from "./Components/Image/Image";
 import WrapperImages from "./Components/WrapperImages/WrapperImages";
+import ThumbnailImage from "./Components/ThumbnailImage/ThumbnailImage";
 import {
   faChevronCircleRight,
   faChevronCircleLeft,
+  faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,7 +19,10 @@ function App() {
   const [isLoading, setLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [isModalActive, setModalActive] = useState(false);
-  const [currentModalImage, setModalImage] = useState({ id: "", url: "" });
+  const [currentModalImage, setModalImage] = useState({
+    index: 0,
+    url: "",
+  });
 
   useEffect(() => {}, []);
 
@@ -45,54 +50,87 @@ function App() {
   };
 
   // To open the image modal
-  const openModal = (url, id) => {
+  const openModal = (index, url) => {
     setModalActive(true);
-    setModalImage({ id: id, url: url });
+    setModalImage({ index: index, url: url });
   };
 
   // To close the modal image
   const closeModal = (event) => {
-    if (event.target.id === "backdrop") {
+    if (
+      event.target.id === "backdrop" ||
+      event.currentTarget.id === "closeBtn"
+    ) {
       setModalActive(false);
     }
   };
 
   // To go to previous image
   const prevImage = () => {
-    let index = images.findIndex((image) => image.id === currentModalImage.id);
+    // let index = images.findIndex((image) => image.id === currentModalImage.id);
+    let index = currentModalImage.index;
     if (index === 0) {
       index = images.length - 1;
     } else {
       index -= 1;
     }
-    setModalImage({ id: images[index].id, url: images[index].urls.regular });
+    setModalImage({
+      index: index,
+      url: images[index].urls.regular,
+    });
   };
   // To go to next image
   const nextImage = () => {
-    let index = images.findIndex((image) => image.id === currentModalImage.id);
+    // let index = images.findIndex((image) => image.id === currentModalImage.id);
+    let index = currentModalImage.index;
     if (index === images.length - 1) {
       index = 0;
     } else {
       index += 1;
     }
-    setModalImage({ id: images[index].id, url: images[index].urls.regular });
+    setModalImage({
+      index: index,
+      url: images[index].urls.regular,
+    });
   };
 
   let modalImage = null;
   if (isModalActive) {
     modalImage = (
       <div className="backdrop" id="backdrop" onClick={closeModal}>
-        <span>
-          <div>
-            <span className="prevBtn" onClick={prevImage}>
+        <div className="modalContainerFixed">
+          <div className="modalContainer">
+            <div
+              className="closeBtn noSelect"
+              id="closeBtn"
+              onClick={closeModal}
+            >
+              <FontAwesomeIcon icon={faTimesCircle} />
+            </div>
+
+            <span className="prevBtn noSelect" onClick={prevImage}>
               <FontAwesomeIcon icon={faChevronCircleLeft} />
             </span>
+
             <img className="modal" src={currentModalImage.url} alt="image" />
-            <span className="nextBtn" onClick={nextImage}>
+
+            <span className="nextBtn noSelect" onClick={nextImage}>
               <FontAwesomeIcon icon={faChevronCircleRight} />
             </span>
+            <div className="imageSlider">
+              {[-2, -1, 0, 1, 2].map((num) => {
+                return (
+                  <ThumbnailImage
+                    images={images}
+                    currentModalImage={currentModalImage}
+                    num={num}
+                    key={num}
+                  />
+                );
+              })}
+            </div>
           </div>
-        </span>
+        </div>
       </div>
     );
   }
@@ -106,13 +144,13 @@ function App() {
       {isLoading ? <Loader /> : null}
 
       <WrapperImages>
-        {images.map((image) => {
+        {images.map((image, index) => {
           return (
             <Image
               url={image.urls.regular}
               key={image.id}
               openModal={openModal}
-              id={image.id}
+              index={index}
             />
           );
         })}

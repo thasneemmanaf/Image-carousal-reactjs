@@ -7,4 +7,6 @@
 .image:hover {
   transform: scale(1.1);
   cursor: pointer;
+  transition-timing-function: ease-in;
+  transition-duration: 0.5s;
 }
