@@ -5,13 +5,7 @@ import Heading from "./Components/Heading/Heading";
 import Loader from "./Components/Loader/Loader";
 import Image from "./Components/Image/Image";
 import WrapperImages from "./Components/WrapperImages/WrapperImages";
-import ThumbnailImage from "./Components/ThumbnailImage/ThumbnailImage";
-import {
-  faChevronCircleRight,
-  faChevronCircleLeft,
-  faTimesCircle,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ModalImage from "./Components/ModalImage/ModalImage";
 
 function App() {
   const [images, setImages] = useState([]);
@@ -100,41 +94,13 @@ function App() {
   let modalImage = null;
   if (isModalActive) {
     modalImage = (
-      <div className="backdrop" id="backdrop" onClick={closeModal}>
-        <div className="modalContainerFixed">
-          <div className="modalContainer">
-            <div
-              className="closeBtn noSelect"
-              id="closeBtn"
-              onClick={closeModal}
-            >
-              <FontAwesomeIcon icon={faTimesCircle} />
-            </div>
-
-            <span className="prevBtn noSelect" onClick={prevImage}>
-              <FontAwesomeIcon icon={faChevronCircleLeft} />
-            </span>
-
-            <img className="modal" src={currentModalImage.url} alt="image" />
-
-            <span className="nextBtn noSelect" onClick={nextImage}>
-              <FontAwesomeIcon icon={faChevronCircleRight} />
-            </span>
-            <div className="imageSlider">
-              {[-2, -1, 0, 1, 2].map((num) => {
-                return (
-                  <ThumbnailImage
-                    images={images}
-                    currentModalImage={currentModalImage}
-                    num={num}
-                    key={num}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
+      <ModalImage
+        closeModal={closeModal}
+        prevImage={prevImage}
+        nextImage={nextImage}
+        currentModalImage={currentModalImage}
+        images={images}
+      />
     );
   }
   return (
