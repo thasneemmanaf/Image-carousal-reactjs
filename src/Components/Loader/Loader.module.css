@@ -1,6 +1,8 @@
 .hourglass {
   display: inline-block;
   position: relative;
+  top: 250px;
+  left: 600px;
   width: 80px;
   height: 80px;
   margin-top: 5px;
@@ -14,7 +16,7 @@
   margin: 8px;
   box-sizing: border-box;
   border: 32px solid #000;
-  border-color: #000 transparent #000 transparent;
+  border-color: #fff transparent #fff transparent;
   animation: hourglass 1.2s infinite;
 }
 @keyframes hourglass {

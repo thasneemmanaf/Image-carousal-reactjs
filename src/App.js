@@ -11,7 +11,6 @@ import {
   faChevronCircleLeft,
   faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function App() {
@@ -23,12 +22,14 @@ function App() {
     index: 0,
     url: "",
   });
+  const [showError, setShowError] = useState(false);
 
-  // Read search value from search box
+  // Read search keyword from search box
   const handleOnChangeSearch = (event) => {
     setSearchValue(event.currentTarget.value);
   };
 
+  // Call Unsplash fetch API and get images based on keyword
   const fetchImages = () => {
     const baseUrl = "https://api.unsplash.com";
     const clientId = "G5DVlLX5OBYa7c4fRHPrws0-YAFxYx34jEdu1bXKLBE";
@@ -42,6 +43,11 @@ function App() {
       .then((data) => {
         setLoading(false);
         setImages([...data.results]);
+        if (data.results < 1) {
+          setShowError(true);
+        } else {
+          setShowError(false);
+        }
       })
       .catch((error) => console.log("error"));
   };
@@ -64,7 +70,6 @@ function App() {
 
   // To go to previous image
   const prevImage = () => {
-    // let index = images.findIndex((image) => image.id === currentModalImage.id);
     let index = currentModalImage.index;
     if (index === 0) {
       index = images.length - 1;
@@ -76,9 +81,9 @@ function App() {
       url: images[index].urls.regular,
     });
   };
+
   // To go to next image
   const nextImage = () => {
-    // let index = images.findIndex((image) => image.id === currentModalImage.id);
     let index = currentModalImage.index;
     if (index === images.length - 1) {
       index = 0;
@@ -91,6 +96,7 @@ function App() {
     });
   };
 
+  // To show the modal image ,Slider and Navigaton buttons to go to next/previous image
   let modalImage = null;
   if (isModalActive) {
     modalImage = (
@@ -133,7 +139,7 @@ function App() {
   }
   return (
     <div className="App">
-      <Heading images={images} />
+      <Heading images={images} showError={showError} />
       <SearchBar
         handleOnChangeSearch={handleOnChangeSearch}
         fetchImages={fetchImages}

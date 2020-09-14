@@ -6,6 +6,9 @@ const ThumbnailImage = (props) => {
   let ArrayLength = props.images.length;
   let smallImageIndex;
 
+  /* 
+  To get infinite navigation effect with next and previous button, Array indexes are reassigned when thumbnail images reaches end/beginning of the array
+  */
   if (MainImageindex === 1 && props.num === -2) {
     smallImageIndex = ArrayLength - 1;
   } else if (MainImageindex === 0 && props.num === -2) {
@@ -22,6 +25,7 @@ const ThumbnailImage = (props) => {
     smallImageIndex = MainImageindex + props.num;
   }
 
+  // To highlight the modal image in the thumbnail image slider
   const highlightClass = props.num === 0 ? classes.highlight : "";
 
   return (
