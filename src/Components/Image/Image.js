@@ -6,7 +6,7 @@ const Image = (props) => {
     <img
       className={classes.image}
       src={props.url}
-      alt="image"
+      alt="not found"
       onClick={() => props.openModal(props.index, props.url)}
     />
   );

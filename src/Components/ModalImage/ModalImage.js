@@ -21,36 +21,40 @@ const ModalImage = (props) => {
             <FontAwesomeIcon icon={faTimesCircle} />
           </div>
 
-          <span
-            className={`${classes.prevBtn} ${classes.noSelect}`}
-            onClick={props.prevImage}
-          >
-            <FontAwesomeIcon icon={faChevronCircleLeft} />
-          </span>
-
           <img
             className={classes.modal}
             src={props.currentModalImage.url}
-            alt="fetched image"
+            alt="not available"
           />
 
-          <span
-            className={`${classes.nextBtn} ${classes.noSelect}`}
-            onClick={props.nextImage}
-          >
-            <FontAwesomeIcon icon={faChevronCircleRight} />
-          </span>
-          <div className={classes.imageSlider}>
-            {[-2, -1, 0, 1, 2].map((num) => {
-              return (
-                <ThumbnailImage
-                  images={props.images}
-                  currentModalImage={props.currentModalImage}
-                  num={num}
-                  key={num}
-                />
-              );
-            })}
+          <div className={classes.sliderContainer}>
+            <span
+              className={`${classes.prevBtn} ${classes.noSelect}`}
+              onClick={props.prevImage}
+            >
+              <FontAwesomeIcon icon={faChevronCircleLeft} />
+            </span>
+
+            <span className={classes.imageSlider}>
+              {[-2, -1, 0, 1, 2].map((num) => {
+                return (
+                  <ThumbnailImage
+                    images={props.images}
+                    currentModalImage={props.currentModalImage}
+                    num={num}
+                    key={num}
+                    openModal={props.openModal}
+                  />
+                );
+              })}
+            </span>
+
+            <span
+              className={`${classes.nextBtn} ${classes.noSelect}`}
+              onClick={props.nextImage}
+            >
+              <FontAwesomeIcon icon={faChevronCircleRight} />
+            </span>
           </div>
         </div>
       </div>

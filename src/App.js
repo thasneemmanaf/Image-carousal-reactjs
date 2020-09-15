@@ -30,20 +30,24 @@ function App() {
     const query = searchValue;
 
     setLoading(true);
-    fetch(
-      `${baseUrl}/search/photos/?page=1&per_page=16&query=${query}&client_id=${clientId}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setLoading(false);
-        setImages([...data.results]);
-        if (data.results < 1) {
-          setShowError(true);
-        } else {
-          setShowError(false);
-        }
-      })
-      .catch((error) => console.log("error"));
+
+    // Artificial delay so that loader will be visible
+    setTimeout(() => {
+      fetch(
+        `${baseUrl}/search/photos/?page=1&per_page=16&query=${query}&client_id=${clientId}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setLoading(false);
+          setImages([...data.results]);
+          if (data.results < 1) {
+            setShowError(true);
+          } else {
+            setShowError(false);
+          }
+        })
+        .catch((error) => console.log("error"));
+    }, 1500);
   };
 
   // To open the image modal
@@ -100,6 +104,7 @@ function App() {
         nextImage={nextImage}
         currentModalImage={currentModalImage}
         images={images}
+        openModal={openModal}
       />
     );
   }
@@ -110,8 +115,9 @@ function App() {
         handleOnChangeSearch={handleOnChangeSearch}
         fetchImages={fetchImages}
         searchValue={searchValue}
+        setImages={setImages}
       />
-      {isLoading ? <Loader /> : null}
+      {isLoading && <Loader />}
       <WrapperImages>
         {images.map((image, index) => {
           return (

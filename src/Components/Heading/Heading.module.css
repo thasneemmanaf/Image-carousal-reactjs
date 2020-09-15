@@ -1,7 +1,7 @@
 h1 {
   position: fixed;
-  top: 180px;
-  left: 170px;
+  top: 10%;
+  left: 12%;
   text-align: center;
   font-family: Verdana, Geneva, sans-serif;
   font-size: 25px;
@@ -15,12 +15,8 @@ h1 {
   text-transform: none;
 }
 
-h1 span {
+.bold {
   font-weight: bold;
-}
-
-.hideH1 {
-  visibility: hidden;
 }
 
 h2 {

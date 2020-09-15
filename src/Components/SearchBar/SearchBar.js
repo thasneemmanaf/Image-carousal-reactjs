@@ -8,6 +8,7 @@ const SearchBar = (props) => {
   const handleSearch = () => {
     if (props.searchValue) {
       setMoveUp([classes.moveUp, classes.searchBtnMoveUp]);
+      props.setImages([]);
       props.fetchImages();
     }
   };

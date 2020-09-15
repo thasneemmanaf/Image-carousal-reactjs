@@ -8,6 +8,6 @@ body {
   background-image: url("./pictures/background.jpg");
   background-repeat: no-repeat;
   background-position: center;
-  background-origin: border-box;
   background-size: cover;
+  background-attachment: fixed;
 }

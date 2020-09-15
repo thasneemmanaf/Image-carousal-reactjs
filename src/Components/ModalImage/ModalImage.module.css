@@ -26,9 +26,9 @@
 .closeBtn {
   position: absolute;
   z-index: 1001;
-  top: -2%;
+  top: -1%;
   left: 94%;
-  font-size: 35px;
+  font-size: 30px;
   color: crimson;
 }
 
@@ -53,18 +53,19 @@
 .nextBtn {
   position: absolute;
   z-index: 1001;
-  top: 40%;
-  left: 85%;
-  font-size: 60px;
+  top: 60%;
+  left: 97%;
+  font-size: 30px;
   color: crimson;
 }
 
 .prevBtn {
   position: absolute;
-  z-index: 1001;
-  top: 40%;
-  left: 5%;
-  font-size: 60px;
+  z-index: 1002;
+
+  top: 80%;
+  left: 1%;
+  font-size: 30px;
   color: crimson;
 }
 
@@ -86,10 +87,17 @@
   position: absolute;
   display: grid;
   justify-content: center;
+
   grid-template-columns: repeat(5, 1fr);
   z-index: 1001;
-  top: 320px;
-  left: 0;
+  /* top: 320px; */
+  left: 10%;
   color: white;
   grid-auto-rows: 115px;
+}
+
+.sliderContainer {
+  position: absolute;
+  top: 77%;
+  width: 95%;
 }

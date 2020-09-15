@@ -34,6 +34,12 @@ const ThumbnailImage = (props) => {
         className={`${classes.smallImage} ${highlightClass}`}
         src={props.images[smallImageIndex].urls.regular}
         alt="img"
+        onClick={() =>
+          props.openModal(
+            smallImageIndex,
+            props.images[smallImageIndex].urls.regular
+          )
+        }
       />
     </div>
   );
