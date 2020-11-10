@@ -1,5 +1,5 @@
+# Image-carousal-react js
 An image carousal project build using React js. Images are powered by Unsplash API
-
 
 <img width="956" alt="carousal1" src="https://user-images.githubusercontent.com/63189207/98664467-b5d32d80-234a-11eb-939c-894b233acca6.PNG">
 
